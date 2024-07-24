@@ -1,4 +1,4 @@
-# Pitchfork Child <br/> A WordPress child theme for Pitchfork
+# Pitchfork Customize <br/> A WordPress child theme for Pitchfork
 
 Requires at least: WP 6.0
 Requires PHP: 7.4

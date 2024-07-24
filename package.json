@@ -1,10 +1,10 @@
 {
-  "name": "pitchfork-child-theme",
+  "name": "pitchfork-customize",
   "version": "0.1.0",
-  "description": "A starter child-theme for Pitchfork from ASU Engineering",
-  "repository": "asuengineering/pitchfork-child",
+  "description": "A child theme for customize.engineering.asu.edu. Works with the Pitchfork theme for WordPress.",
+  "repository": "asuengineering/pitchfork-customize",
   "main": ".eslintrc.js",
-  "author": "ASUEngineering",
+  "author": "Steve Ryan",
   "license": "MIT",
   "scripts": {},
   "dependencies": {

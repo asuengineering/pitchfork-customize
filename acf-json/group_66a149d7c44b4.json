@@ -1,0 +1,106 @@
+{
+    "key": "group_66a149d7c44b4",
+    "title": "Program Details",
+    "fields": [
+        {
+            "key": "field_66a149d72392e",
+            "label": "Program Description",
+            "name": "program_description",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Appears in the body of the card for the program. \r\nRecommended character limit is 300 characters.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "70",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 4,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_66a14b48d10fa",
+            "label": "Is this program available for online students?",
+            "name": "program_online",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "30",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui_on_text": "Available",
+            "ui_off_text": "Unavailable",
+            "ui": 1
+        },
+        {
+            "key": "field_66a14ac4d10f9",
+            "label": "Program Link",
+            "name": "program_link",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "Text link to the page or site describing the program.\r\nOptionally, you may choose to open this link in a new tab.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "70",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_66a14a712392f",
+            "label": "Program Image",
+            "name": "program_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Establishes a card image.\r\nRecommended but not required.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "30",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "program"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1721847027
+}

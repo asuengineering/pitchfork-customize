@@ -25,7 +25,7 @@
             "custom_icon_set": "",
             "default_label": "",
             "default_value": "",
-            "save_format": "element",
+            "save_format": "class",
             "allow_null": 1,
             "show_preview": 1,
             "enqueue_fa": 0,
@@ -71,5 +71,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1721942266
+    "modified": 1722293593
 }

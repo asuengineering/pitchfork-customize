@@ -1,0 +1,289 @@
+/*--------------------------------------------------------------
+# Customize
+
+3. Slick.js carousel styles
+4. Card styling
+5. Results (#results)
+6. Adjustments for mobile
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+  3. Slick.js carousel styles
+  --------------------------------------------------------------*/
+
+.slick-slide {
+	margin: 0 1rem;
+}
+
+.slick-list {
+	margin: 0 -1rem;
+}
+
+.program-deck {
+	position: relative;
+
+	.btn {
+		position: absolute;
+		top: 50%;
+	}
+
+	.btn-prev {
+		left: -5rem;
+	}
+
+	.btn-next {
+		right: -5rem;
+	}
+
+	.slick-dots {
+		bottom: initial;
+		top: -3rem;
+		text-align: right;
+
+		li.slick-active button::before {
+			color: #8c1d40;
+		}
+	}
+}
+
+/*--------------------------------------------------------------
+  4. Card styling
+  --------------------------------------------------------------*/
+
+// Card styles
+.deck {
+	.card {
+		border-width: 2px;
+
+		.card-header {
+			position: relative;
+
+			h3 {
+				margin-right: 2rem;
+			}
+
+			.card-checkmark {
+				position: absolute;
+				top: -1.5rem;
+				right: 1rem;
+				background-color: #fff;
+				border-radius: 50%;
+				border-width: 15px;
+				padding: .25rem;
+			}
+		}
+
+		&.card-selected {
+			border-color: #8c1d40;
+			border-width: 2px;
+		}
+
+		.uds-list {
+			padding-bottom: 0;
+
+			li {
+				font-size: 14px;
+				margin-bottom: .5rem;
+			}
+		}
+
+		.card-checkmark {
+
+			label:hover {
+				cursor: pointer;
+			}
+
+			input[type=checkbox]~label.selected,
+			input[type=checkbox]:checked~label.unselected {
+				display: none;
+			}
+
+			input[type=checkbox]~label.unseleceted,
+			input[type=checkbox]:checked~label.selected {
+				display: block;
+			}
+
+			svg {
+				font-size: 3em;
+				color: #8c1d40;
+			}
+		}
+
+		.read-more svg {
+			margin-left: .5rem;
+		}
+	}
+}
+
+/*--------------------------------------------------------------
+  5. Results (#results)
+  --------------------------------------------------------------*/
+#wrapper-results {
+	padding: 6rem 0;
+	width: 100%;
+	max-width: 1960px;
+}
+
+#results {
+	background-color: #191919;
+
+	.intro-text {
+		padding-bottom: 3rem;
+	}
+
+	.result-list {
+		padding: 0;
+		margin: 0 0 0 2rem;
+		background-color: transparent;
+
+		.choice {
+			display: flex;
+			justify-content: flex-start;
+			margin: 1.75rem 0 0 5.5rem;
+			padding: 0.5rem 2rem .5rem 1rem;
+
+			position: relative;
+			background-color: #ffffff;
+			font-weight: 700;
+		}
+
+		.choice:before {
+			color: #ffffff;
+			margin-right: 1rem;
+			position: absolute;
+			left: -5.5rem;
+			width: 5.5rem;
+			top: 0;
+			bottom: 0;
+			padding: .5em;
+			text-align: center;
+		}
+
+		.year-1:before {
+			content: 'Year 1';
+			background-color: #00A3E0;
+		}
+
+		.year-2:before {
+			content: 'Year 2';
+			background-color: #007EC8;
+		}
+
+		.year-3:before {
+			content: 'Year 3';
+			background-color: #0058B1;
+		}
+
+		.year-4:before {
+			content: 'Year 4';
+			background-color: #003399;
+		}
+
+		.icon-row {
+			text-align: right;
+			float: right;
+
+			svg {
+				color: #D0D0D0;
+			}
+
+			svg+svg {
+				margin-left: .5rem;
+			}
+		}
+	}
+}
+
+/*--------------------------------------------------------------
+  6. Adjustments for mobile
+  --------------------------------------------------------------*/
+@media (max-width: 767.98px) {
+	.intro-text p {
+		margin-bottom: 5rem;
+	}
+
+	.program-deck {
+		.slick-dots {
+			text-align: center;
+			padding: 2rem 0;
+			top: -6rem;
+
+			li {
+				margin: 0 0 0 2px;
+			}
+		}
+
+		.btn-prev,
+		.btn-next {
+			display: none;
+		}
+	}
+
+	#instruction-svg {
+		display: none;
+	}
+
+	#jump-to-cards+h2 {
+		font-size: 1.5rem;
+	}
+
+	#quote {
+		img {
+			display: block;
+			margin: 0 auto;
+			padding-bottom: 2rem;
+		}
+
+		blockquote {
+			padding-left: 0;
+		}
+	}
+
+	.card {
+		.card-title {
+			font-size: 20px;
+		}
+
+		.card-text {
+			font-size: 14px;
+		}
+
+		.card-footer {
+			display: none;
+		}
+	}
+
+	#wrapper-results {
+		padding: 2rem 0;
+	}
+
+	#results {
+		.intro-text {
+			padding-bottom: 0;
+
+			p {
+				margin-bottom: inherit;
+			}
+		}
+
+		.result-list {
+			margin-left: 0;
+			margin-top: 3rem;
+
+			.icon-row {
+				display: none;
+			}
+		}
+
+		.form-row {
+			.col-md-8 {
+				order: 1;
+			}
+
+			.col-md-4 {
+				padding-top: 3rem;
+				order: 2;
+			}
+		}
+	}
+}

@@ -51,7 +51,7 @@ if ( ! empty ( $block['anchor'] ) ) {
 echo '<div ' . $anchor . 'class="' . implode( ' ', $carousel_classes ) . '" style="' . $spacing . '">';
 if ( $is_preview ) {
 	echo '<div class="choice year-1"><a href="#">Example selected program</a></div>';
-	echo '<div class="choice year-3"><a href="#">Updates as cards are selected cards on the published page.</a></div>';
+	echo '<div class="choice year-2"><a href="#">Second example program.</a></div>';
 }
 echo '</div>';
 echo '<ul class="results visually-hidden"></ul>';

@@ -6,3 +6,11 @@
 @import "../src/unity-bootstrap-theme/_custom-asu-variables.scss";
 @import 'media-queries';
 @import 'carousel';
+
+#gform_1 {
+
+	.gfield_label,
+	.gfield_description {
+		color: $uds-color-base-white;
+	}
+}

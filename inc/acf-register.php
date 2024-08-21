@@ -42,6 +42,7 @@ function pitchfork_customize_acf_init_block_types() {
 	$block_includes = array(
 		'/program-carousel',        // Card carousel, powered by program CPT
 		'/program-output',        	// Output of user selections, captures email body text
+		'/program-card', 			// Individual program cards. Checkboxes included.
 	);
 
 	// Loop through array items and register each block.

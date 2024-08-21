@@ -8,11 +8,12 @@
 --------------------------------------------------------------*/
 
 .card-wrapper {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	grid-template-rows: 1fr;
-	grid-column-gap: 2rem;
-	grid-row-gap: 2rem;
+	display: flex;
+	gap: 2rem;
+
+	.card {
+		width: calc(100%/3);
+	}
 }
 
 .carousel .carousel-indicators {
@@ -183,95 +184,6 @@
 }
 
 /*--------------------------------------------------------------
-  6. Adjustments for mobile
-  --------------------------------------------------------------*/
-@media (max-width: 767.98px) {
-	.intro-text p {
-		margin-bottom: 5rem;
-	}
-
-	.program-deck {
-		.slick-dots {
-			text-align: center;
-			padding: 2rem 0;
-			top: -6rem;
-
-			li {
-				margin: 0 0 0 2px;
-			}
-		}
-
-		.btn-prev,
-		.btn-next {
-			display: none;
-		}
-	}
-
-	#instruction-svg {
-		display: none;
-	}
-
-	#jump-to-cards+h2 {
-		font-size: 1.5rem;
-	}
-
-	#quote {
-		img {
-			display: block;
-			margin: 0 auto;
-			padding-bottom: 2rem;
-		}
-
-		blockquote {
-			padding-left: 0;
-		}
-	}
-
-	.card {
-		.card-title {
-			font-size: 20px;
-		}
-
-		.card-text {
-			font-size: 14px;
-		}
-
-		.card-footer {
-			display: none;
-		}
-	}
-
-	#wrapper-results {
-		padding: 2rem 0;
-	}
-
-	#results {
-		.intro-text {
-			padding-bottom: 0;
-
-			p {
-				margin-bottom: inherit;
-			}
-		}
-
-		.result-list {
-			margin-left: 0;
-			margin-top: 3rem;
-
-			.icon-row {
-				display: none;
-			}
-		}
-
-		.form-row {
-			.col-md-8 {
-				order: 1;
-			}
-
-			.col-md-4 {
-				padding-top: 3rem;
-				order: 2;
-			}
-		}
-	}
-}
+6. Adjustments for desktop
+--------------------------------------------------------------*/
+@include media-breakpoint-up($md) {}

@@ -10,7 +10,7 @@
  * Also contains a visually hidden div that contains the body of the email sent to the student.
  */
 
-// Thus far, no field to speak of. =)
+// Thus far, no fields to speak of. =)
 
 /**
  * Additional margin/padding settings
@@ -27,13 +27,13 @@ if (function_exists('pitchfork_blocks_acf_calculate_spacing')) {
  * Don't forget to support HTML named anchor!
  */
 
-$carousel_classes = array('result-list');
+$classes = array('result-list');
 
 if ( ! empty( $block['className'] ) ) {
 	// Assume that there is more than one class in the "roll your own CSS" field separated by a space.
 	$class_setting = explode(' ', $block['className']);
 	foreach ($class_setting as $setting) {
-		$carousel_classes[] = $setting;
+		$classes[] = $setting;
 	}
 }
 
@@ -48,12 +48,14 @@ if ( ! empty ( $block['anchor'] ) ) {
 /**
  * Output the block.
  */
-echo '<div ' . $anchor . 'class="' . implode( ' ', $carousel_classes ) . '" style="' . $spacing . '">';
+echo '<dl ' . $anchor . 'class="' . implode( ' ', $classes ) . '" style="' . $spacing . '">';
 if ( $is_preview ) {
-	echo '<div class="choice year-1"><a href="#">Example selected program</a></div>';
-	echo '<div class="choice year-2"><a href="#">Second example program.</a></div>';
+	echo '<dt><h4>Example selected program</h4></dt>';
+	echo '<dd><a href="#">https://engineering.asu.edu/program-1</a></dd>';
+	echo '<dt><h4>Example selected program</h4></dt>';
+	echo '<dd><a href="#">https://engineering.asu.edu/program-2</a></dd>';
 }
-echo '</div>';
+echo '</dl>';
 echo '<ul class="results visually-hidden"></ul>';
 
 

@@ -16,100 +16,16 @@
 	}
 }
 
-.carousel .carousel-indicators {
-	bottom: -3rem;
-
-	.btn.btn-circle.btn-small {
-		width: .5rem !important;
-		height: .5rem;
-		background-color: #d0d0d0;
-
-		&.active {
-			background-color: #191919;
-		}
-	}
-}
-
-
-#carousel-next,
-#carousel-prev {
-	position: absolute;
-	top: 50%;
-	bottom: 0;
-	z-index: 1;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-#carousel-prev {
-	left: -6rem;
-}
-
-#carousel-next {
-	right: -6rem;
-}
-
 /*--------------------------------------------------------------
   4. Card styling
   --------------------------------------------------------------*/
 
 // Card styles
 .card {
-	border-width: 2px;
-
-	.card-header {
-		position: relative;
-
-		h3 {
-			margin-right: 2rem;
-		}
-
-		.card-checkmark {
-			position: absolute;
-			top: -1.5rem;
-			right: 1rem;
-			background-color: #fff;
-			border-radius: 50%;
-			border-width: 15px;
-			padding: .25rem;
-		}
-	}
 
 	&.card-selected {
 		border-color: #8c1d40;
 		border-width: 2px;
-	}
-
-	.card-body .uds-list {
-		padding-bottom: 0;
-
-		li {
-			font-size: 14px;
-			margin-bottom: .25rem;
-		}
-	}
-
-	.card-checkmark {
-
-		label:hover {
-			cursor: pointer;
-		}
-
-		input[type=checkbox]~label.selected,
-		input[type=checkbox]:checked~label.unselected {
-			display: none;
-		}
-
-		input[type=checkbox]~label.unseleceted,
-		input[type=checkbox]:checked~label.selected {
-			display: block;
-		}
-
-		svg {
-			font-size: 3em;
-			color: #8c1d40;
-		}
 	}
 
 	.read-more+svg {
@@ -121,69 +37,14 @@
   5. Results (#results)
   --------------------------------------------------------------*/
 
-.result-list {
-	padding: 0;
-	margin: 0 0 0 2rem;
-	background-color: transparent;
+dl.result-list {
+	color: $uds-color-base-white;
 
-	.choice {
-		display: flex;
-		justify-content: flex-start;
-		margin: 1.75rem 0 0 5.5rem;
-		padding: 0.5rem 2rem .5rem 1rem;
-
-		position: relative;
-		background-color: #ffffff;
-		font-weight: 700;
+	a {
+		color: $uds-color-base-gold;
 	}
 
-	.choice:before {
-		color: #ffffff;
-		margin-right: 1rem;
-		position: absolute;
-		left: -5.5rem;
-		width: 5.5rem;
-		top: 0;
-		bottom: 0;
-		padding: .5em;
-		text-align: center;
-	}
-
-	.year-1:before {
-		content: 'Year 1';
-		background-color: #00A3E0;
-	}
-
-	.year-2:before {
-		content: 'Year 2';
-		background-color: #007EC8;
-	}
-
-	.year-3:before {
-		content: 'Year 3';
-		background-color: #0058B1;
-	}
-
-	.year-4:before {
-		content: 'Year 4';
-		background-color: #003399;
-	}
-
-	.icon-row {
-		text-align: right;
-		float: right;
-
-		svg {
-			color: #D0D0D0;
-		}
-
-		svg+svg {
-			margin-left: .5rem;
-		}
+	dt h4 {
+		margin: 0;
 	}
 }
-
-/*--------------------------------------------------------------
-6. Adjustments for desktop
---------------------------------------------------------------*/
-@include media-breakpoint-up($md) {}

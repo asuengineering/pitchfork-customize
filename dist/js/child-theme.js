@@ -9,111 +9,72 @@
 
 document.addEventListener('DOMContentLoaded', function () {
   // Use these variables outside of the ajax call
-  var userSelections = [];
-  var currentSelect = {};
+  let userSelections = [];
 
-  // Get all the labels with the class 'unselected' inside '.card-checkmark'
-  document.querySelectorAll('.card-checkmark label.unselected').forEach(function (label) {
-    label.addEventListener('click', function () {
-      // Select the checkbox sibling and check it
-      var checkbox = label.parentElement.querySelector('input[type=checkbox]');
-      checkbox.checked = true;
+  // Add event listeners to the checkboxes
+  // Complete userSelections array for further use
+  document.querySelectorAll('.form-check-input').forEach(function (checkbox) {
+    checkbox.addEventListener('change', function (event) {
+      const card = event.target.closest('.card'); // Get the closest card element
 
-      // Find the parent card element and add the 'card-selected' class
-      var card = label.closest('.card');
-      if (card) {
-        card.classList.add('card-selected');
-      }
+      // Capture information from within the card
+      const cardTitle = card.querySelector('.card-title').innerText;
+      const cardDescription = card.querySelector('.program-description').innerText;
+      const cardSlug = card.querySelector('form').getAttribute('data-slug');
+      const readMoreLink = card.querySelector('a.read-more').getAttribute('href');
 
-      // Get the current year and slug from the parent form's data attributes
-      var form = label.closest('form');
-      var curYear = form.getAttribute('data-year');
-      var curSlug = form.getAttribute('data-slug');
-      var programTitle = card.querySelector('h3.card-title').innerText;
-      var programDescription = card.querySelector('.program-description').innerText;
-      var readMoreLink = card.querySelector('a.read-more').getAttribute('href');
-
-      // Create the currentSelect object
-      var currentSelect = {
-        year: curYear,
-        slug: curSlug,
-        title: programTitle,
-        description: programDescription,
-        link: readMoreLink
+      // Create the cardData object
+      const cardData = {
+        title: cardTitle,
+        description: cardDescription,
+        slug: cardSlug,
+        readMore: readMoreLink
       };
+      if (event.target.checked) {
+        // 1. Add a class to the card for styling
+        card.classList.add('card-selected');
 
-      // Add to the user selection array
-      userSelections.push(currentSelect);
-      console.log(userSelections);
-    });
-  });
-
-  // Get all the labels with the class 'selected' inside '.card-checkmark'
-  document.querySelectorAll('.card-checkmark label.selected').forEach(function (label) {
-    label.addEventListener('click', function () {
-      // Select the checkbox sibling and uncheck it
-      var checkbox = label.parentElement.querySelector('input[type=checkbox]');
-      checkbox.checked = false;
-
-      // Find the parent card element and remove the 'card-selected' class
-      var card = label.closest('.card');
-      if (card) {
+        // 2. Add the cardData to the userSelections array
+        userSelections.push(cardData);
+      } else {
+        // Remove the class if the checkbox is unchecked
         card.classList.remove('card-selected');
+
+        // Find and remove the corresponding cardData from the userSelections array
+        userSelections = userSelections.filter(function (selection) {
+          return selection.slug !== cardSlug;
+        });
       }
 
-      // Get the current year and slug from the parent form's data attributes
-      var form = label.closest('form');
-      var curYear = form.getAttribute('data-year');
-      var curSlug = form.getAttribute('data-slug');
-
-      // Remove the clicked item from the user selection array
-      for (var i = userSelections.length - 1; i >= 0; --i) {
-        if (userSelections[i].year == curYear && userSelections[i].slug == curSlug) {
-          userSelections.splice(i, 1);
-        }
-      }
+      // Output the current state of userSelections for debugging purposes
+      console.log(userSelections);
+      updateUserSelections();
     });
   });
-  document.querySelectorAll('.card-checkmark label').forEach(function (label) {
-    label.addEventListener('click', function () {
-      var screenList = document.querySelector('.result-list');
-      screenList.innerHTML = '';
-      var emailListItems = '';
 
-      // Sort the user selections by year
-      userSelections.sort((a, b) => a.year.localeCompare(b.year));
+  // Function to update the screen and hidden form field based on user selections
+  function updateUserSelections() {
+    var screenList = document.querySelector('.result-list');
+    screenList.innerHTML = ''; // Clear previous output
 
-      // Look up selected card from results table earlier to make all fields available for formatting.
-      userSelections.forEach(function (pick) {
-        // Output: Screen list items.
-        screenList.insertAdjacentHTML('beforeend', '<div class="choice ' + pick.year + '"><a href="' + pick.link + '">' + pick.title + '</a></div>');
+    var emailListItems = ''; // Clear previous email list items
 
-        // Output: Email bullet points.
-        var printYear = '';
-        switch (pick.year) {
-          case 'year-1':
-            printYear = 'Year 1';
-            break;
-          case 'year-2':
-            printYear = 'Year 2';
-            break;
-          case 'year-3':
-            printYear = 'Year 3';
-            break;
-          case 'year-4':
-            printYear = 'Year 4';
-            break;
-        }
+    userSelections.forEach(function (pick) {
+      // Output: Screen list items
+      //	echo '<dt><h4>Example selected program</h4></dt>';
+      // echo '<dd><a href="#">https://engineering.asu.edu/program-1</a></dd>';
+      screenList.insertAdjacentHTML('beforeend', '<dt><h4>' + pick.title + '</h4></dt>' + '<dd><a class="output-more" href="' + pick.readMore + '">' + pick.readMore + '</a></dd>');
 
-        // Append the formatted string to the textarea's current value
-        emailListItems += '<li style="padding-bottom: 20px"><strong>' + printYear + '</strong> - <a style="font-weight:700;color:#8c1d40;" href="' + pick.link + '">' + pick.title + '</a> - ' + pick.description + '</li>';
-      });
-      var emailBodyTextArea = document.querySelector('textarea#input_1_4');
-      var emailBodyBefore = '<div id="email"><table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top" width="100%"><tr><td align="left" style="font-size:0;padding:10px 25px;word-break:break-word"><div style="font-family:Arial,sans-serif;font-size:20px;font-weight:700;line-height:24px;text-align:left;color:#191919">Your customized ASU Engineering experience</div></td></tr><tr><td align="left" style="font-size:0;padding:10px 25px;word-break:break-word"><div class="form-name" style="font-family:Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#191919"></div></td></tr><tr><td align="left" style="font-size:0;padding:10px 25px;word-break:break-word"><div style="font-family:Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#191919">Experiential opportunities are integral components of your Fulton Schools experience and the skills you gain will help prepare you for whatever you choose to do after graduation. These opportunities are part of the Fulton Difference - our commitment to foster student success in our innovators and engineers from day one. Surrounding your coursework with these opportunities will provide you with the tools to be the most qualified and competitive for engineering internships, jobs and graduate programs across the globe.</div></td></tr><tr><td align="left" style="font-size:0;padding:10px 25px;word-break:break-word"><div style="font-family:Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#191919">By utilizing the Fulton Schools’ Customize tool, you have taken a step towards engineering your own future. Below is your Customize Map, showing the programs you have selected to help propel you to the next level.</div></td></tr><tr><td align="left" style="font-size:0;padding:10px 25px;word-break:break-word"><div style="font-family:Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#191919">';
-      var emailBodyAfter = '<tr><td align="left" style="font-size:0;padding:10px 25px;padding-bottom:30px;word-break:break-word"><div style="font-family:Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#191919">Combine your Customize map with your <a style="color:#8c1d40;" href="https://engineering.asu.edu/undergraduate-degree-programs/">degree major map</a>, to create your personalized college path. And we know that your goals can change throughout your time as a student, so keep returning the Customize tool or meet with your Academic Advisor when you feel the need to adjust your path.</div></td></tr><tr><td align="left" style="font-size:0;padding:10px 25px;word-break:break-word"><div style="font-family:Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#191919">If you have questions about any of the programs you see in Customize, please feel free to reach out to us at <a style="color:#8c1d40;" href="mailto:FultonSchools@asu.edu">FultonSchools@asu.edu</a>. We are here to support you throughout your journey, and cannot wait to see what you will accomplish as a member of the Fulton Schools Family.</div></td></tr>';
-      emailBodyTextArea.value = emailBodyBefore + '<ul>' + emailListItems + '</ul>' + emailBodyAfter;
+      // Compile the formatted string for the hidden form field
+      emailListItems += '<li style="padding-bottom: 20px">' + '<a style="font-weight:700;color:#8c1d40;" href="' + pick.readMore + '">' + pick.title + '</a> - ' + pick.description + '</li>';
     });
-  });
+
+    // Update the hidden form field
+    var emailBodyTextArea = document.querySelector('textarea#input_1_4');
+    var emailBodyBefore = '<div id="email"><table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top" width="100%"><tr><td align="left" style="font-size:0;padding:10px 25px;word-break:break-word"><div style="font-family:Arial,sans-serif;font-size:20px;font-weight:700;line-height:24px;text-align:left;color:#191919">Your customized ASU Engineering experience</div></td></tr><tr><td align="left" style="font-size:0;padding:10px 25px;word-break:break-word"><div class="form-name" style="font-family:Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#191919"></div></td></tr><tr><td align="left" style="font-size:0;padding:10px 25px;word-break:break-word"><div style="font-family:Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#191919">Experiential opportunities are integral components of your Fulton Schools experience and the skills you gain will help prepare you for whatever you choose to do after graduation. These opportunities are part of the Fulton Difference - our commitment to foster student success in our innovators and engineers from day one. Surrounding your coursework with these opportunities will provide you with the tools to be the most qualified and competitive for engineering internships, jobs and graduate programs across the globe.</div></td></tr><tr><td align="left" style="font-size:0;padding:10px 25px;word-break:break-word"><div style="font-family:Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#191919">By utilizing the Fulton Schools’ Customize tool, you have taken a step towards engineering your own future. Below is your Customize Map, showing the programs you have selected to help propel you to the next level.</div></td></tr><tr><td align="left" style="font-size:0;padding:10px 25px;word-break:break-word"><div style="font-family:Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#191919">';
+    var emailBodyAfter = '<tr><td align="left" style="font-size:0;padding:10px 25px;padding-bottom:30px;word-break:break-word"><div style="font-family:Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#191919">Combine your Customize map with your <a style="color:#8c1d40;" href="https://engineering.asu.edu/undergraduate-degree-programs/">degree major map</a>, to create your personalized college path. And we know that your goals can change throughout your time as a student, so keep returning the Customize tool or meet with your Academic Advisor when you feel the need to adjust your path.</div></td></tr><tr><td align="left" style="font-size:0;padding:10px 25px;word-break:break-word"><div style="font-family:Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#191919">If you have questions about any of the programs you see in Customize, please feel free to reach out to us at <a style="color:#8c1d40;" href="mailto:FultonSchools@asu.edu">FultonSchools@asu.edu</a>. We are here to support you throughout your journey, and cannot wait to see what you will accomplish as a member of the Fulton Schools Family.</div></td></tr>';
+    emailBodyTextArea.value = emailBodyBefore + '<ul>' + emailListItems + '</ul>' + emailBodyAfter;
+  }
 
   // Load two additional form fields with lots of HTML for email header/footer.
   // One time operation, can do it immediately after DOM load.

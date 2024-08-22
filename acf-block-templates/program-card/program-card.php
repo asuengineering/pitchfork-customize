@@ -90,7 +90,7 @@ if( $card ) {
 	$inner .= '</div>';
 
 	// Include data-year and data-slug attributes on each form element?
-	$inner .= '<form class="uds-form card-image-overlay-content ms-4"><fieldset class="card-image-fieldset">';
+	$inner .= '<form class="uds-form card-image-overlay-content ms-4" data-slug="' . $slug . '"><fieldset class="card-image-fieldset">';
 	$inner .= '<div class="form-check"><input class="form-check-input" type="checkbox" id="' . $formID . '" value="added">';
 	$inner .= '<label class="form-check-label" for="' . $formID . '">Add to my plan</label></div>';
 	$inner .= '</fieldset></form>';

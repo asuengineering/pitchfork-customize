@@ -20,7 +20,7 @@
 		},
 		"classname": false,
 		"color": {
-			"background": false,
+			"background": true,
 			"text": false,
 			"link": false
 		}

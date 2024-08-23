@@ -1,24 +1,24 @@
 /*--------------------------------------------------------------
-# Customize
+# Customize Styles
 
-3. Slick.js carousel styles
-4. Card styling
-5. Results (#results)
-6. Adjustments for mobile
+2. Program Card
+5. Program Output
 --------------------------------------------------------------*/
 
-.card-wrapper {
-	display: flex;
-	gap: 2rem;
+// Styles for the deployed gravity form. Intended for a dark background.
+#gform_1 {
 
-	.card {
-		width: calc(100%/3);
+	.gfield_label,
+	.gfield_description,
+	.gform-field-label {
+		color: $uds-color-base-white;
 	}
 }
 
+
 /*--------------------------------------------------------------
-  4. Card styling
-  --------------------------------------------------------------*/
+2. Program Card Block
+--------------------------------------------------------------*/
 
 // Card styles
 .card {
@@ -34,8 +34,8 @@
 }
 
 /*--------------------------------------------------------------
-  5. Results (#results)
-  --------------------------------------------------------------*/
+5. Program Output Block
+--------------------------------------------------------------*/
 
 dl.result-list {
 	color: $uds-color-base-white;

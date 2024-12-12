@@ -64,7 +64,7 @@
             "name": "program_image",
             "aria-label": "",
             "type": "image",
-            "instructions": "Establishes a card image.\r\nRecommended but not required.",
+            "instructions": "Optional, but recommended. Card will not be \"selectable\" by the end user unless an image is present.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -81,6 +81,7 @@
             "max_height": "",
             "max_size": "",
             "mime_types": "",
+            "allow_in_bindings": 1,
             "preview_size": "medium"
         }
     ],
@@ -102,5 +103,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1721847027
+    "modified": 1734031672
 }

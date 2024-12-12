@@ -9,15 +9,14 @@
  * Card data drawn from programs custom post type within this theme.
  */
 
-$card  = get_field( 'customize_program' );
+$card  		= get_field( 'customize_program' );
+$showlink  	= get_field( 'customize_display_link' );
 
 if (! empty ($block['anchor'])) {
 	$anchor = $block['anchor'];
 } else {
 	$anchor = '';
 }
-
-do_action('qm/debug', $card);
 
 /**
  * Additional margin/padding settings
@@ -81,27 +80,43 @@ if( $card ) {
 
 		$emph_list .= '</div>';
 
+	} else {
+
+		$emph_list = '';
 	}
 
 	// Assemble individual card.
-	$inner .= '<div class="card-image-content">';
-	$inner .= '<div class="card-image-gradient checkbox-card">';
-	$inner .= wp_get_attachment_image( $prog_image, 'large', false, array( 'class' => 'card-img-top' ) );
-	$inner .= '</div>';
 
-	// Include data-year and data-slug attributes on each form element?
-	$inner .= '<form class="uds-form card-image-overlay-content ms-4" data-slug="' . $slug . '"><fieldset class="card-image-fieldset">';
-	$inner .= '<div class="form-check"><input class="form-check-input" type="checkbox" id="' . $formID . '" value="added">';
-	$inner .= '<label class="form-check-label" for="' . $formID . '">Add to my plan</label></div>';
-	$inner .= '</fieldset></form>';
-	$inner .= '</div>';
+	// Omit card image section and form component if card image is unset.
+	if (!empty($prog_image)) {
+		$inner .= '<div class="card-image-content">';
+		$inner .= '<div class="card-image-gradient checkbox-card">';
+		$inner .= wp_get_attachment_image( $prog_image, 'large', false, array( 'class' => 'card-img-top' ) );
+		$inner .= '</div>';
+
+		// Include data-year and data-slug attributes on each form element?
+		$inner .= '<form class="uds-form card-image-overlay-content ms-4" data-slug="' . $slug . '"><fieldset class="card-image-fieldset">';
+		$inner .= '<div class="form-check"><input class="form-check-input" type="checkbox" id="' . $formID . '" value="added">';
+		$inner .= '<label class="form-check-label" for="' . $formID . '">Add to my plan</label></div>';
+		$inner .= '</fieldset></form>';
+		$inner .= '</div>';
+	}
 
 	$inner .= '<div class="card-header"><h3 class="card-title">' . $title . '</h3></div>';
 
 	$inner .= '<div class="card-body"><p class="card-text program-description">' . $prog_desc . '</p></div>';
 
-	$inner .= '<div class="card-link"><a class="read-more" href="' . $prog_link['url'] . '" target="_blank">Read more</a>';
-	$inner .= '<span class="fas fa-external-link-alt"></span></div>';
+	// Show the card link if there is a link present and if the user has enabled the display.
+	if ( (!empty($prog_link)) && ($showlink)) {
+		$inner .= '<div class="card-link">';
+		$inner .= '<a class="read-more" href="' . $prog_link['url'] . '" target="' . $prog_link['target'] . '">' . $prog_link['title'];
+
+		if ( '_blank' === $prog_link['target'] ) {
+			$inner .= '<span class="fas fa-external-link-alt" style="margin-left:.5rem;" title="Link opens in a new window"></span>';
+		}
+
+		$inner .= '</a></div>';
+	}
 
 	$inner .= $emph_list;
 

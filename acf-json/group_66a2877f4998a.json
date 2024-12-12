@@ -3,36 +3,6 @@
     "title": "Emphasis Details",
     "fields": [
         {
-            "key": "field_66a287c4cebb3",
-            "label": "Emphasis Icon",
-            "name": "emphasis_icon",
-            "aria-label": "",
-            "type": "font-awesome",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "icon_sets": [
-                "solid",
-                "regular",
-                "light",
-                "brands"
-            ],
-            "custom_icon_set": "",
-            "default_label": "",
-            "default_value": "",
-            "save_format": "class",
-            "allow_null": 1,
-            "show_preview": 1,
-            "enqueue_fa": 0,
-            "fa_live_preview": "",
-            "choices": []
-        },
-        {
             "key": "field_66a2877fcebb2",
             "label": "Display on card?",
             "name": "emphasis_display",
@@ -71,5 +41,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1722293593
+    "modified": 1734031753
 }

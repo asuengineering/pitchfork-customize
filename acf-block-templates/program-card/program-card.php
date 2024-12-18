@@ -129,6 +129,6 @@ if( $card ) {
  * Output the card
  */
 
-echo '<div id="' . $anchor . '" class="' . implode( ' ', $card_classes ) . '" style="' . $spacing . '">';
+echo '<div id="' . $anchor . '" class="' . implode( ' ', $card_classes ) . '" style="' . $spacing . '" data-proglink="' . $prog_link['url'] . '">';
 echo $inner;
 echo '</div>';

@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const cardTitle = card.querySelector('.card-title').innerText;
       const cardDescription = card.querySelector('.program-description').innerText;
       const cardSlug = card.querySelector('form').getAttribute('data-slug');
-      const readMoreLink = card.querySelector('a.read-more').getAttribute('href');
+      const readMoreLink = card.dataset.proglink;
 
       // Create the cardData object
       const cardData = {

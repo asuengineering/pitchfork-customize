@@ -33,7 +33,7 @@ if (function_exists('pitchfork_blocks_acf_calculate_spacing')) {
  * Don't forget to support HTML named anchor!
  */
 
-$card_classes = array( 'card', 'card-checkbox-stacked' );
+$card_classes = array( 'card', 'card-checkbox-stacked', 'wp-card-v2' );
 
 if ( ! empty( $block['className'] ) ) {
 
